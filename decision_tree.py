@@ -9,7 +9,7 @@ from sklearn.metrics import classification_report
 
 # Function importing Dataset
 def importdata():
-    balance_data = pd.read_excel(r"C:\Users\ACER\Downloads\dataset_decision_tree.xlsx", 'Sheet1')
+    balance_data = pd.read_excel(r"dataset_decision_tree.xlsx", 'Sheet1')
 
     # Printing the dataswet shape
     print("Dataset Length: ", len(balance_data))

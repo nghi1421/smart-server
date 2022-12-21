@@ -9,8 +9,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     token_label1, sam_label1 = load_data(url_full_train_data, "Sheet1", 300)
-    label1_pred = predict('buồn', token_label1, sam_label1, load_aspect_model('D:\\model\\CNN_train_3c_relu.json',
-                                                                              'D:\\HDH\\dts-phuclong_raw_train_2c-001-0.0144-1.0000.h5'),
+    label1_pred = predict('buồn', token_label1, sam_label1, load_aspect_model('CNN_train_3c_relu.json',
+                                                                              'dts-phuclong_raw_train_2c-001-0.0144-1.0000.h5'),
                           labels)
     data = importdata()
     X, Y, X_train, X_test, y_train, y_test = splitdataset(data)
