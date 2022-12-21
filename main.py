@@ -23,4 +23,5 @@ def index():
     return json.dumps({'name': y_pred_entropy[0]})
 
 
-app.run()
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
