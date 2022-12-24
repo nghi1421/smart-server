@@ -1,20 +1,33 @@
 import json
-from flask import Flask
+from flask import Flask, request
 from CNN.m_predict import *
 from decision_tree import *
+import os
+# root = os.getcwd()
+#
+# dir_path = os.path.dirname(os.path.realpath(__file__))
+# lines = os.path.join(dir_path, "lines.txt")
+# fh = open(lines)
+# for line in fh.readlines():
+#     print(line)
+
 
 app = Flask(__name__)
 
+labels = ['pos', 'nev']
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+
+    # answer = request.args.get("answer_mood")
     token_label1, sam_label1 = load_data(url_full_train_data, "Sheet1", 300)
-    label1_pred = predict('buồn', token_label1, sam_label1, load_aspect_model('CNN_train_3c_relu.json',
-                                                                              'dts-phuclong_raw_train_2c-001-0.0144-1.0000.h5'),
+    label1_pred = predict(request.args.get("answer_mood"), token_label1, sam_label1, load_aspect_model('CNN/CNN_train_3c_relu.json',
+                                                                'CNN/dts-phuclong_raw_train_2c-001-0.0144-1.0000.h5'),
                           labels)
     data = importdata()
     X, Y, X_train, X_test, y_train, y_test = splitdataset(data)
     clf_entropy = train_using_entropy(X_train, X_test, y_train)
+
     if label1_pred == 'nev':
         mood = 1
     else:
@@ -24,4 +37,6 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
+    # print(os.getcwd())
+    # , port = os.getenv("PORT", default=5000)
+    app.run(debug=True)

@@ -5,11 +5,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
+import os
 
+# root = os.getcwd()
 
 # Function importing Dataset
 def importdata():
-    balance_data = pd.read_excel(r"dataset_decision_tree.xlsx", 'Sheet1')
+    balance_data = pd.read_excel("dataset_decision_tree.xlsx",'Sheet1')
 
     # Printing the dataswet shape
     print("Dataset Length: ", len(balance_data))
