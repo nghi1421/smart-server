@@ -21,7 +21,7 @@ def index():
 
     # answer = request.args.get("answer_mood")
     token_label1, sam_label1 = load_data(url_full_train_data, "Sheet1", 300)
-    label1_pred = predict(request.args.get("answer_mood"), token_label1, sam_label1, load_aspect_model('CNN/CNN_train_3c_relu.json',
+    label1_pred = predict(request.form.get('answer_mood'), token_label1, sam_label1, load_aspect_model('CNN/CNN_train_3c_relu.json',
                                                                 'CNN/dts-phuclong_raw_train_2c-001-0.0144-1.0000.h5'),
                           labels)
     data = importdata()
