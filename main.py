@@ -41,5 +41,4 @@ def hello():
 
 if __name__ == '__main__':
     # print(os.getcwd())
-    # , port = os.getenv("PORT", default=5000)
-    app.run(debug=True)
+    app.run(debug=True,port = os.getenv("PORT", default=5000))
