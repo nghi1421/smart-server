@@ -35,6 +35,9 @@ def index():
     y_pred_entropy = clf_entropy.predict([[1,0.8,0.8,1]])
     return json.dumps({'name': y_pred_entropy[0]})
 
+@app.route('/welcome', methods=['GET'])
+def hello():
+    return json.dumps({'name': "Nguyễn Thanh Nghị"})
 
 if __name__ == '__main__':
     # print(os.getcwd())
