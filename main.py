@@ -16,9 +16,8 @@ app = Flask(__name__)
 
 labels = ['pos', 'nev']
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-
+@app.route('/predict', methods=['GET', 'POST'])
+def predict():
     # answer = request.args.get("answer_mood")
     token_label1, sam_label1 = load_data(url_full_train_data, "Sheet1", 300)
     label1_pred = predict(request.form.get('answer_mood'), token_label1, sam_label1, load_aspect_model('CNN/CNN_train_3c_relu.json',
@@ -41,4 +40,4 @@ def hello():
 
 if __name__ == '__main__':
     # print(os.getcwd())
-    app.run(debug=True,port = os.getenv("PORT", default=5000))
+    app.run(debug=True)
