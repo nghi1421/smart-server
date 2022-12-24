@@ -2,6 +2,8 @@ import json
 from flask import Flask, request
 from CNN.m_predict import *
 from decision_tree import *
+from flask import jsonify
+
 import os
 # root = os.getcwd()
 #
@@ -32,7 +34,10 @@ def predict():
     else:
         mood = 0
     y_pred_entropy = clf_entropy.predict([[1,0.8,0.8,1]])
-    return json.dumps({'name': y_pred_entropy[0]})
+    # return json.dumps({'name': y_pred_entropy[0]})
+
+    if request.method == 'POST':
+        return jsonify(**request.json)
 
 @app.route('/welcome', methods=['GET'])
 def hello():
